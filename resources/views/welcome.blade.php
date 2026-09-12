@@ -859,7 +859,7 @@
                     </div>
                     <span class="preview-badge" id="beforeLinesBadge">0 Lines</span>
                 </div>
-                <div class="preview-content before" id="beforePreview">Select a file to preview raw contents...</div>
+                <textarea class="preview-content before" id="beforePreview" wrap="off" placeholder="Paste your raw content here, or upload a file..." oninput="handleRawInput()"></textarea>
             </div>
 
             <!-- After -->
@@ -946,7 +946,7 @@
             
             if (savedRaw) {
                 rawContent = savedRaw;
-                beforePreview.textContent = rawContent;
+                beforePreview.value = rawContent;
                 beforeLinesBadge.textContent = `${rawContent.split(/\r?\n/).length} Lines`;
                 
                 fileNameDisplay.textContent = "Loaded from cache";
@@ -989,7 +989,7 @@
             localStorage.removeItem('vsf_after');
             
             rawContent = "";
-            beforePreview.textContent = "Select a file to preview raw contents...";
+            beforePreview.value = "";
             afterPreview.value = "";
             beforeLinesBadge.textContent = "0 Lines";
             afterLinesBadge.textContent = "0 Accounts";
@@ -1030,6 +1030,26 @@
             }, 300);
         }
 
+        function handleRawInput() {
+            rawContent = beforePreview.value;
+            const lineCount = rawContent ? rawContent.split(/\r?\n/).length : 0;
+            beforeLinesBadge.textContent = `${lineCount} Lines`;
+            
+            if (rawContent) {
+                formatBtn.disabled = false;
+                toggleSmartTools(true);
+                debouncedProcessFile();
+            } else {
+                formatBtn.disabled = true;
+                toggleSmartTools(false);
+                afterPreview.value = "";
+                afterLinesBadge.textContent = "0 Accounts";
+                downloadBtn.disabled = true;
+                copyBtn.disabled = true;
+                statusDiv.innerText = "";
+            }
+        }
+
         // File selection event listener
         fileInput.addEventListener('change', function(e) {
             if (this.files && this.files.length > 0) {
@@ -1039,7 +1059,7 @@
                 const reader = new FileReader();
                 reader.onload = function(e) {
                     rawContent = e.target.result;
-                    beforePreview.textContent = rawContent;
+                    beforePreview.value = rawContent;
                     
                     const lineCount = rawContent.split(/\r?\n/).length;
                     beforeLinesBadge.textContent = `${lineCount} Lines`;
