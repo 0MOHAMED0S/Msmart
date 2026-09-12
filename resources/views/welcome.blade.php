@@ -1109,25 +1109,25 @@
                     let emailIndex = parts.findIndex(p => emailRegex.test(p.trim()));
 
                     if (emailIndex !== -1) {
-                        let startIndex = Math.max(0, emailIndex - 2);
-                        let extractedParts = parts.slice(startIndex).map(p => p.trim());
+                        let username = (emailIndex >= 2) ? parts[emailIndex - 2].trim() : "UnknownUser";
+                        let password = (emailIndex >= 1) ? parts[emailIndex - 1].trim() : "UnknownPass";
+                        let email = parts[emailIndex].trim();
+                        let emailPass = (emailIndex + 1 < parts.length) ? parts[emailIndex + 1].trim() : "";
                         
-                        // Reconstruct URLs if they were split by colon
-                        if (bestDelimiter === ':') {
-                            for (let j = 0; j < extractedParts.length; j++) {
-                                if ((extractedParts[j] === 'http' || extractedParts[j] === 'https') && 
-                                    j + 1 < extractedParts.length && 
-                                    extractedParts[j+1].startsWith('//')) {
-                                    
-                                    let url = extractedParts.slice(j).join(':');
-                                    extractedParts = extractedParts.slice(0, j);
-                                    extractedParts.push(url);
-                                    break;
-                                }
+                        // Smart 2FA Extraction: 
+                        // Search for a 16-64 character uppercase alphanumeric string (typical base32 secret)
+                        // strictly after the email to avoid matching passwords.
+                        let twoFaCode = "";
+                        if (emailIndex + 1 < parts.length) {
+                            let afterEmailStr = parts.slice(emailIndex + 1).join(bestDelimiter);
+                            let match = afterEmailStr.match(/\b[A-Z0-9]{16,64}\b/);
+                            if (match) {
+                                twoFaCode = match[0];
                             }
                         }
 
-                        currentGroup.push(extractedParts.join('\n'));
+                        let accountString = `${username}\n${password}\n${email}\n${emailPass}\nhttps://2fa-x.com/${twoFaCode}`;
+                        currentGroup.push(accountString);
                         successCount++;
                         
                         if (currentGroup.length === groupSize) {
