@@ -261,6 +261,43 @@
             height: 24px;
         }
 
+        .btn-icon {
+            background: transparent;
+            color: var(--text-muted);
+            padding: 6px;
+            border-radius: 6px;
+            border: 1px solid transparent;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-icon:hover:not(:disabled) {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-main);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-icon:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .btn-icon.copied {
+            color: var(--success);
+            background: rgba(16, 185, 129, 0.1);
+            border-color: rgba(16, 185, 129, 0.3);
+            animation: pop 0.3s ease-out;
+        }
+        
+        @keyframes pop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+            100% { transform: scale(1); }
+        }
+
         /* Previews Section */
         .previews-container {
             display: grid;
@@ -835,7 +872,15 @@
                         </svg>
                         Editable Output
                     </div>
-                    <span class="preview-badge" id="afterLinesBadge">0 Accounts</span>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <button id="copyBtn" class="btn-icon" onclick="copyOutput()" title="Copy to Clipboard" disabled>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                        <span class="preview-badge" id="afterLinesBadge">0 Accounts</span>
+                    </div>
                 </div>
                 
                 <textarea class="preview-content" id="afterPreview" wrap="off" placeholder="Awaiting processing... Feel free to edit this text before downloading!" oninput="saveTextareaCache()"></textarea>
@@ -871,6 +916,7 @@
         
         const formatBtn = document.getElementById('formatBtn');
         const downloadBtn = document.getElementById('downloadBtn');
+        const copyBtn = document.getElementById('copyBtn');
         
         const beforePreview = document.getElementById('beforePreview');
         const afterPreview = document.getElementById('afterPreview');
@@ -911,6 +957,7 @@
                 if (savedAfter) {
                     afterPreview.value = savedAfter;
                     downloadBtn.disabled = false;
+                    copyBtn.disabled = false;
                     statusDiv.innerText = "Restored from cache.";
                     statusDiv.style.color = "var(--text-muted)";
                 } else {
@@ -957,6 +1004,7 @@
             
             formatBtn.disabled = true;
             downloadBtn.disabled = true;
+            copyBtn.disabled = true;
             toggleSmartTools(false);
             
             statusDiv.innerText = "Workspace cleared.";
@@ -1001,6 +1049,7 @@
                     localStorage.removeItem('vsf_after');
                     afterLinesBadge.textContent = "0 Accounts";
                     downloadBtn.disabled = true;
+                    copyBtn.disabled = true;
                     toggleSmartTools(true);
                     
                     // Enable process button
@@ -1060,21 +1109,25 @@
                     let emailIndex = parts.findIndex(p => emailRegex.test(p.trim()));
 
                     if (emailIndex !== -1) {
-                        let username = (emailIndex >= 2) ? parts[emailIndex - 2].trim() : "UnknownUser";
-                        let password = (emailIndex >= 1) ? parts[emailIndex - 1].trim() : "UnknownPass";
-                        let email = parts[emailIndex].trim();
-                        let emailPass = (emailIndex + 1 < parts.length) ? parts[emailIndex + 1].trim() : "UnknownEmailPass";
-                        let twoFa = (emailIndex + 2 < parts.length) ? parts[emailIndex + 2].trim() : "Unknown2FA";
-
-                        let urlIndex = parts.findIndex(p => p.trim().startsWith('http://') || p.trim().startsWith('https://'));
-                        let link = "";
-                        if (urlIndex !== -1) {
-                            link = (bestDelimiter === ':') ? parts.slice(urlIndex).join(':').trim() : parts[urlIndex].trim();
-                        } else {
-                            link = "http://2fa.fb.rip/" + twoFa;
+                        let startIndex = Math.max(0, emailIndex - 2);
+                        let extractedParts = parts.slice(startIndex).map(p => p.trim());
+                        
+                        // Reconstruct URLs if they were split by colon
+                        if (bestDelimiter === ':') {
+                            for (let j = 0; j < extractedParts.length; j++) {
+                                if ((extractedParts[j] === 'http' || extractedParts[j] === 'https') && 
+                                    j + 1 < extractedParts.length && 
+                                    extractedParts[j+1].startsWith('//')) {
+                                    
+                                    let url = extractedParts.slice(j).join(':');
+                                    extractedParts = extractedParts.slice(0, j);
+                                    extractedParts.push(url);
+                                    break;
+                                }
+                            }
                         }
 
-                        currentGroup.push(`${username}\n${password}\n${email}\n${emailPass}\n${twoFa}\n${link}`);
+                        currentGroup.push(extractedParts.join('\n'));
                         successCount++;
                         
                         if (currentGroup.length === groupSize) {
@@ -1114,6 +1167,7 @@
                 afterLinesBadge.textContent = `${successCount} Accounts`;
                 
                 downloadBtn.disabled = false;
+                copyBtn.disabled = false;
                 
                 let msg = `Success! Processed ${successCount} accounts (Grouped by ${groupSize}).`;
                 if (replacedCount > 0) {
@@ -1124,6 +1178,29 @@
                 statusDiv.style.color = "var(--success)";
                 
             }, 50);
+        }
+
+        function copyOutput() {
+            const contentToCopy = afterPreview.value;
+            if (!contentToCopy) return;
+            
+            navigator.clipboard.writeText(contentToCopy).then(() => {
+                const btn = document.getElementById('copyBtn');
+                btn.classList.add('copied');
+                const originalHTML = btn.innerHTML;
+                
+                btn.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>`;
+                
+                setTimeout(() => {
+                    btn.classList.remove('copied');
+                    btn.innerHTML = originalHTML;
+                }, 1500);
+            }).catch(err => {
+                console.error('Failed to copy!', err);
+                alert("Failed to copy to clipboard.");
+            });
         }
 
         function downloadFormattedFile() {
