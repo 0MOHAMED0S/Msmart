@@ -1134,7 +1134,7 @@
                         let email = parts[emailIndex].trim();
                         let rawPass = (emailIndex + 1 < parts.length) ? parts[emailIndex + 1].trim() : "";
         // Remove unwanted token pattern if present
-        let emailPass = rawPass.replace(/\|M\.C539_BAY[^|]*\|[\w-]+$/g, "").trim();
+        let emailPass = rawPass.replace(/\|M\.C\d+_BAY[^|]*\|[\w-]+$/g, "").trim();
                         
                         // Smart 2FA Extraction: 
                         // Search for a 16-64 character uppercase alphanumeric string (typical base32 secret)
