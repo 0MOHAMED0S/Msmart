@@ -1132,7 +1132,9 @@
                         let username = (emailIndex >= 2) ? parts[emailIndex - 2].trim() : "UnknownUser";
                         let password = (emailIndex >= 1) ? parts[emailIndex - 1].trim() : "UnknownPass";
                         let email = parts[emailIndex].trim();
-                        let emailPass = (emailIndex + 1 < parts.length) ? parts[emailIndex + 1].trim() : "";
+                        let rawPass = (emailIndex + 1 < parts.length) ? parts[emailIndex + 1].trim() : "";
+        // Remove unwanted token pattern if present
+        let emailPass = rawPass.replace(/\|M\.C539_BAY[^|]*\|[\w-]+$/g, "").trim();
                         
                         // Smart 2FA Extraction: 
                         // Search for a 16-64 character uppercase alphanumeric string (typical base32 secret)
