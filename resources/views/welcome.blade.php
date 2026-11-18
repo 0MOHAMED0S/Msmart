@@ -36,9 +36,11 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 40px 20px;
+            padding: 70px 0 0 0;
+            margin: 0;
             position: relative;
             overflow-x: hidden;
+            width: 100%;
         }
 
         /* ===== Animated Background ===== */
@@ -903,316 +905,6 @@
             border-color: rgba(59, 130, 246, 0.35);
             background: rgba(59, 130, 246, 0.12);
             box-shadow: 0 2px 8px rgba(59, 130, 246, 0.15);
-        }
-
-        @media (max-width: 960px) {
-            .previews-container {
-                grid-template-columns: 1fr;
-                gap: 16px;
-            }
-        }
-
-        @media (max-width: 900px) {
-            .top-settings-row {
-                grid-template-columns: 1fr;
-                gap: 8px;
-            }
-            .settings-panel {
-                padding: 6px 12px;
-                min-height: 36px;
-            }
-            .stats-bar {
-                gap: 6px;
-                padding: 6px 12px;
-            }
-            .stat-chip {
-                padding: 4px 10px;
-                font-size: 0.72rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            body {
-                padding-top: 70px;
-            }
-            .content-wrapper {
-                padding: 14px 10px;
-            }
-            .header h1 {
-                font-size: 1.5rem;
-            }
-            .header {
-                margin-bottom: 16px;
-            }
-            .header p {
-                font-size: 0.85rem;
-            }
-            .controls-card {
-                padding: 18px 12px;
-                gap: 14px;
-            }
-            .file-upload-label {
-                padding: 16px 12px;
-                text-align: center;
-            }
-            .upload-icon-circle {
-                width: 40px;
-                height: 40px;
-                margin-bottom: 6px;
-            }
-            .upload-icon-svg {
-                width: 20px;
-                height: 20px;
-            }
-            .upload-title {
-                font-size: 0.88rem;
-            }
-            .upload-subtitle {
-                font-size: 0.7rem;
-            }
-            #fileName {
-                font-size: 0.74rem;
-                padding: 3px 10px;
-            }
-            .button-group {
-                flex-direction: column;
-                width: 100%;
-                gap: 8px;
-            }
-            .button-group button {
-                width: 100%;
-                justify-content: center;
-                font-size: 0.9rem;
-                padding: 9px 16px;
-            }
-
-            /* Responsive Settings Row - Always ONE line per panel (2 lines total) */
-            .top-settings-row {
-                display: flex;
-                flex-direction: column;
-                gap: 6px;
-                width: 100%;
-            }
-            .settings-panel {
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                width: 100%;
-                padding: 5px 10px;
-                gap: 6px;
-                min-height: 34px;
-                border-radius: 8px;
-            }
-            .setting-group {
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                gap: 4px;
-                min-width: 0;
-            }
-            .setting-group.border-left {
-                border-left: 1px solid rgba(255, 255, 255, 0.1);
-                border-top: none;
-                margin-left: 2px;
-                padding-left: 6px;
-                padding-top: 0;
-                margin-top: 0;
-            }
-            .setting-group label {
-                font-size: 0.74rem;
-                white-space: nowrap;
-                flex-shrink: 0;
-                gap: 4px;
-            }
-            .setting-icon {
-                width: 12px;
-                height: 12px;
-            }
-            .settings-panel input {
-                height: 26px;
-                font-size: 0.78rem;
-                padding: 2px 6px;
-                border-radius: 5px;
-            }
-            #groupSize {
-                width: 48px;
-                text-align: center;
-            }
-
-            /* Responsive Stats Bar - Small chips fitting in ONE or TWO lines */
-            .stats-bar {
-                display: flex;
-                flex-direction: row;
-                flex-wrap: wrap;
-                align-items: center;
-                justify-content: center;
-                gap: 4px 6px;
-                padding: 6px 8px;
-                border-radius: 10px;
-                width: 100%;
-            }
-            .stat-chip {
-                flex: 0 0 auto;
-                width: auto;
-                min-width: 0;
-                padding: 3px 8px;
-                font-size: 0.68rem;
-                border-radius: 6px;
-                gap: 4px;
-                height: 25px;
-            }
-            .stat-chip svg {
-                width: 11px;
-                height: 11px;
-            }
-            .stat-divider {
-                display: none !important;
-            }
-
-            /* Responsive Previews */
-            .previews-container {
-                grid-template-columns: 1fr;
-                gap: 14px;
-            }
-            .preview-content, .editor-wrapper {
-                height: 300px;
-            }
-            .line-numbers {
-                min-width: 32px;
-                width: 32px;
-            }
-            .line-numbers-track {
-                padding: 16px 4px 16px 0;
-            }
-            .line-numbers .line-num {
-                font-size: 0.65rem;
-                padding-right: 4px;
-            }
-            .preview-header {
-                padding: 0 2px;
-                gap: 6px;
-            }
-            .preview-title {
-                font-size: 0.88rem;
-                gap: 5px;
-            }
-            .preview-title svg {
-                width: 15px;
-                height: 15px;
-            }
-            .preview-actions {
-                gap: 5px;
-            }
-            .mode-toggle-btn {
-                height: 26px !important;
-                padding: 0 8px !important;
-                font-size: 0.69rem !important;
-                min-width: 76px !important;
-                gap: 4px;
-                white-space: nowrap !important;
-                word-break: keep-all !important;
-                flex-shrink: 0 !important;
-            }
-            .btn-icon {
-                width: 26px !important;
-                height: 26px !important;
-                min-width: 26px !important;
-                max-width: 26px !important;
-                padding: 0 !important;
-            }
-            .preview-badge {
-                height: 26px !important;
-                padding: 0 8px !important;
-                font-size: 0.69rem !important;
-                width: auto !important;
-                max-width: fit-content !important;
-            }
-            .row-hover-copy {
-                display: none !important;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .preview-header {
-                padding: 0 1px;
-                gap: 4px;
-            }
-            .preview-title {
-                font-size: 0.82rem;
-                gap: 4px;
-            }
-            .preview-title svg {
-                width: 14px;
-                height: 14px;
-            }
-            .preview-actions {
-                gap: 4px;
-            }
-            .mode-toggle-btn {
-                height: 25px !important;
-                padding: 0 6px !important;
-                font-size: 0.66rem !important;
-                min-width: 68px !important;
-                gap: 3px;
-                border-radius: 6px;
-                white-space: nowrap !important;
-                word-break: keep-all !important;
-                flex: 0 0 auto !important;
-            }
-            .mode-toggle-btn svg {
-                width: 11px;
-                height: 11px;
-            }
-            .btn-icon {
-                width: 25px !important;
-                height: 25px !important;
-                min-width: 25px !important;
-                max-width: 25px !important;
-                padding: 0 !important;
-                border-radius: 6px;
-            }
-            .btn-icon svg {
-                width: 13px;
-                height: 13px;
-            }
-            .preview-badge {
-                height: 25px !important;
-                padding: 0 6px !important;
-                font-size: 0.66rem !important;
-                border-radius: 9999px;
-                width: auto !important;
-                max-width: fit-content !important;
-                white-space: nowrap !important;
-            }
-        }
-
-        @media (max-width: 360px) {
-            .preview-header {
-                flex-wrap: nowrap;
-                gap: 3px;
-            }
-            .preview-title {
-                font-size: 0.76rem;
-            }
-            .preview-title span {
-                max-width: 65px;
-                overflow: hidden;
-                text-overflow: ellipsis;
-            }
-            .mode-toggle-btn {
-                height: 24px !important;
-                padding: 0 4px !important;
-                font-size: 0.62rem !important;
-                min-width: 60px !important;
-                gap: 2px;
-                white-space: nowrap !important;
-                word-break: keep-all !important;
-                flex: 0 0 auto !important;
-            }
-            .preview-badge {
-                padding: 0 5px !important;
-                font-size: 0.62rem !important;
-            }
         }
 
         .stats-bar {
@@ -2320,7 +2012,7 @@
         }
         
         textarea.preview-content {
-            resize: vertical;
+            resize: none;
             outline: none;
             width: 100%;
             transition: border-color 0.2s, box-shadow 0.2s;
@@ -2450,24 +2142,22 @@
             justify-content: center;
         }
 
-        /* Layout Additions */
-        body {
-            padding-top: 70px; /* Space for navbar */
-        }
-
+        /* Layout Rules */
         .content-wrapper {
             flex-grow: 1;
             width: 100%;
+            max-width: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 40px 20px;
+            padding: 32px clamp(12px, 3.5vw, 28px);
+            box-sizing: border-box;
         }
 
         .navbar {
             width: 100%;
             height: 70px;
-            padding: 0 40px;
+            padding: 0 clamp(16px, 4vw, 40px);
             display: flex;
             align-items: center;
             background: rgba(15, 23, 42, 0.85);
@@ -2593,12 +2283,422 @@
             100% { width: 100%; }
         }
 
+        /* ==========================================================================
+           PROFESSIONAL RESPONSIVE ARCHITECTURE (Mobile-First Scaled & Desktop-Refined)
+           ========================================================================== */
+
+        /* --- 1024px and below: Laptops & Large Tablets --- */
+        @media (max-width: 1024px) {
+            .main-container {
+                max-width: 100%;
+                gap: 18px;
+            }
+            .previews-container {
+                gap: 16px;
+            }
+            .editor-wrapper {
+                height: 400px;
+            }
+        }
+
+        /* --- 900px and below: Tablets (Panels stack vertically) --- */
+        @media (max-width: 900px) {
+            .previews-container {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            .editor-wrapper {
+                height: 360px;
+            }
+            .top-settings-row {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+        }
+
+        /* --- 768px and below: Mobile Devices & Portrait Tablets --- */
         @media (max-width: 768px) {
+            body {
+                padding-top: 60px;
+            }
             .navbar {
-                padding: 0 20px;
+                height: 60px;
+                padding: 0 16px;
+            }
+            .nav-brand {
+                font-size: 1.3rem;
+            }
+            .content-wrapper {
+                padding: 20px clamp(10px, 3vw, 16px);
+            }
+            .header {
+                margin-bottom: 20px;
+            }
+            .header h1 {
+                font-size: clamp(1.6rem, 5vw, 2.1rem);
+                margin-bottom: 8px;
+            }
+            .header p {
+                font-size: 0.86rem;
+                line-height: 1.5;
+            }
+            .header-badge {
+                padding: 4px 11px;
+                font-size: 0.68rem;
+                margin-bottom: 10px;
+            }
+
+            .controls-card {
+                padding: 20px 14px;
+                gap: 16px;
+                border-radius: 14px;
+            }
+            .file-upload-label {
+                padding: 18px 14px;
+                border-radius: 12px;
+            }
+            .upload-icon-circle {
+                width: 44px;
+                height: 44px;
+                margin-bottom: 8px;
+            }
+            .upload-icon-svg {
+                width: 22px;
+                height: 22px;
+            }
+            .upload-title {
+                font-size: 0.9rem;
+            }
+            .upload-subtitle {
+                font-size: 0.72rem;
+            }
+            #fileName {
+                font-size: 0.76rem;
+                padding: 3px 12px;
+            }
+
+            .button-group {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+                width: 100%;
+            }
+            .button-group button {
+                width: 100%;
+                justify-content: center;
+                padding: 10px 16px;
+                font-size: 0.88rem;
+                min-height: 42px;
+            }
+            .button-group .btn-danger#clearBtn {
+                grid-column: span 2;
+            }
+
+            .settings-panel {
+                padding: 8px 12px;
+                min-height: 38px;
+                border-radius: 9px;
+            }
+            .setting-group label {
+                font-size: 0.76rem;
+            }
+            .settings-panel input {
+                height: 28px;
+                font-size: 0.8rem;
+            }
+
+            /* Clean Stats Bar */
+            .stats-bar {
+                gap: 6px;
+                padding: 8px 10px;
+                border-radius: 10px;
+            }
+            .stat-chip {
+                padding: 4px 10px;
+                font-size: 0.72rem;
+                height: 27px;
+                border-radius: 7px;
+                gap: 5px;
+            }
+            .stat-chip svg {
+                width: 13px;
+                height: 13px;
+            }
+
+            /* Responsive Preview Panes */
+            .editor-wrapper {
+                height: 330px;
+                border-radius: 10px;
+            }
+            .line-numbers {
+                min-width: 38px;
+                width: 38px;
+            }
+            .line-numbers-track {
+                padding: 16px 4px 16px 0;
+            }
+            .line-numbers .line-num {
+                font-size: 0.75rem;
+                padding: 0 6px 0 2px;
+            }
+            .preview-content {
+                padding: 16px 14px 16px 10px;
+                font-size: 0.86rem;
+            }
+
+            /* Preview Header & Actions (Wraps smoothly, zero overflow or clipping) */
+            .preview-header {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                justify-content: space-between;
+                row-gap: 8px;
+                column-gap: 8px;
+                min-height: auto;
+                padding: 0;
+            }
+            .preview-title {
+                font-size: 0.9rem;
+            }
+            .preview-title svg {
+                width: 16px;
+                height: 16px;
+            }
+            .preview-actions {
+                display: inline-flex;
+                align-items: center;
+                flex-wrap: wrap;
+                gap: 6px;
+                margin-left: auto;
+            }
+            .mode-toggle-btn {
+                height: 28px !important;
+                padding: 0 9px !important;
+                font-size: 0.72rem !important;
+                min-width: auto !important;
+                gap: 5px;
+            }
+            .preview-badge {
+                height: 28px !important;
+                padding: 0 9px !important;
+                font-size: 0.72rem !important;
+            }
+            .btn-icon {
+                width: 28px !important;
+                height: 28px !important;
+                min-width: 28px !important;
+                max-width: 28px !important;
+            }
+
+            /* Touch screen: hide desktop hover-only floating buttons */
+            .row-hover-copy,
+            .row-hover-delete,
+            .row-dup-jump,
+            .row-hover-highlight {
+                display: none !important;
+                pointer-events: none !important;
+            }
+
+            /* Toasts on Mobile */
+            .flash-toast-container {
+                top: 68px;
+                left: 12px;
+                right: 12px;
+                width: auto;
+                max-width: 440px;
+                margin: 0 auto;
+                gap: 8px;
+            }
+            .flash-toast {
+                padding: 10px 12px;
+                gap: 10px;
+                border-radius: 11px;
+                animation: flashToastInMobile 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            }
+            .flash-toast.dismissing {
+                animation: flashToastOutMobile 0.24s cubic-bezier(0.4, 0, 0.2, 1) forwards;
             }
             .loader-logo {
-                font-size: 2.5rem;
+                font-size: 2.4rem;
+            }
+        }
+
+        /* --- 540px and below: Small Smartphones --- */
+        @media (max-width: 540px) {
+            .navbar {
+                height: 56px;
+                padding: 0 14px;
+            }
+            body {
+                padding-top: 56px;
+            }
+            .nav-brand {
+                font-size: 1.2rem;
+            }
+            .content-wrapper {
+                padding: 16px 10px;
+            }
+            .header h1 {
+                font-size: 1.5rem;
+            }
+            .header p {
+                font-size: 0.8rem;
+            }
+
+            /* Full-width inputs for Find & Replace so typing is effortless */
+            .replace-panel {
+                display: flex;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 8px;
+                padding: 10px 12px;
+            }
+            .replace-panel .setting-group {
+                width: 100%;
+            }
+            .replace-panel .setting-group.border-left {
+                border-left: none;
+                padding-left: 0;
+                margin-left: 0;
+                border-top: 1px solid rgba(255, 255, 255, 0.08);
+                padding-top: 8px;
+            }
+            .replace-panel .setting-group label {
+                min-width: 62px;
+            }
+
+            .group-panel {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                padding: 8px 10px;
+            }
+            .group-panel #groupSize {
+                width: 48px;
+            }
+
+            /* Stats Chips for Mobile */
+            .stats-bar {
+                gap: 5px;
+                padding: 6px 8px;
+            }
+            .stat-chip {
+                padding: 3px 8px;
+                font-size: 0.68rem;
+                height: 25px;
+                border-radius: 6px;
+                gap: 4px;
+            }
+            .stat-chip svg {
+                width: 11px;
+                height: 11px;
+            }
+
+            /* Editor on small phones */
+            .editor-wrapper {
+                height: 300px;
+            }
+            .line-numbers {
+                min-width: 32px;
+                width: 32px;
+            }
+            .line-numbers-track {
+                padding: 16px 2px 16px 0;
+            }
+            .line-numbers .line-num {
+                font-size: 0.68rem;
+                padding: 0 4px 0 2px;
+            }
+            .preview-content {
+                padding: 16px 10px 16px 8px;
+                font-size: 0.82rem;
+            }
+
+            /* Duplicate band buttons on small screens */
+            .dup-band-actions {
+                right: 6px;
+                gap: 4px;
+            }
+            .dup-marker-tag, .dup-delete-btn {
+                padding: 1px 5px;
+                font-size: 0.6rem;
+                height: 17px;
+                line-height: 15px;
+            }
+            .dup-marker-tag svg, .dup-delete-btn svg {
+                width: 9px;
+                height: 9px;
+            }
+
+            .mode-toggle-btn {
+                height: 26px !important;
+                padding: 0 7px !important;
+                font-size: 0.68rem !important;
+                gap: 3px;
+            }
+            .mode-toggle-btn svg {
+                width: 12px;
+                height: 12px;
+            }
+            .preview-badge {
+                height: 26px !important;
+                padding: 0 7px !important;
+                font-size: 0.68rem !important;
+            }
+            .btn-icon {
+                width: 26px !important;
+                height: 26px !important;
+                min-width: 26px !important;
+                max-width: 26px !important;
+            }
+            .btn-icon svg {
+                width: 13px;
+                height: 13px;
+            }
+
+            /* Modal on Mobile */
+            .modal-card {
+                padding: 24px 18px;
+                max-width: calc(100vw - 32px);
+            }
+            .modal-card h2 {
+                font-size: 1.25rem;
+            }
+            .modal-card p {
+                font-size: 0.88rem;
+                margin-bottom: 20px;
+            }
+        }
+
+        /* --- 380px and below: Extra-Narrow Phones (iPhone SE, Galaxy Z Flip outer) --- */
+        @media (max-width: 380px) {
+            .button-group {
+                grid-template-columns: 1fr;
+            }
+            .button-group .btn-danger#clearBtn {
+                grid-column: span 1;
+            }
+            .preview-title {
+                font-size: 0.78rem;
+            }
+            .preview-actions {
+                gap: 4px;
+            }
+            .mode-toggle-btn {
+                height: 24px !important;
+                padding: 0 5px !important;
+                font-size: 0.64rem !important;
+            }
+            .preview-badge {
+                height: 24px !important;
+                padding: 0 5px !important;
+                font-size: 0.64rem !important;
+            }
+            .btn-icon {
+                width: 24px !important;
+                height: 24px !important;
+                min-width: 24px !important;
+                max-width: 24px !important;
             }
         }
 
@@ -2735,7 +2835,7 @@
         <!-- Settings Row (Above the states) -->
         <div class="top-settings-row">
             <!-- Grouping Settings -->
-            <div class="settings-panel">
+            <div class="settings-panel group-panel">
                 <div class="setting-group group-size-item">
                     <label for="groupSize">
                         <svg class="setting-icon" viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
@@ -2753,7 +2853,7 @@
             </div>
 
             <!-- Replace Settings -->
-            <div class="settings-panel">
+            <div class="settings-panel replace-panel">
                 <div class="setting-group flex-fill">
                     <label for="findInput">
                         <svg class="setting-icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
@@ -3029,6 +3129,7 @@
             toast.className = `flash-toast flash-${type}`;
             toast.setAttribute('role', 'alert');
             toast.setAttribute('aria-live', 'polite');
+            if (title) toast.setAttribute('data-toast-title', title);
             toast.innerHTML = `
                 <div class="flash-toast-icon">
                     ${icons[type] || icons.info}
@@ -3053,10 +3154,20 @@
                 <div class="flash-toast-progress" style="animation-duration: ${duration}ms;"></div>
             `;
 
+            // If cycling duplicate locations rapidly, update existing toast smoothly
+            if (title === 'Duplicate Located') {
+                const existingDup = container.querySelector('.flash-toast[data-toast-title="Duplicate Located"]');
+                if (existingDup) {
+                    existingDup.remove();
+                }
+            }
+
             // Responsive toast stacking: max 2 on mobile, max 3 on larger screens
             const maxToasts = window.innerWidth <= 640 ? 2 : 3;
             while (container.children.length >= maxToasts) {
-                dismissToast(container.firstElementChild);
+                const oldest = container.firstElementChild;
+                if (!oldest) break;
+                oldest.remove();
             }
 
             container.appendChild(toast);
@@ -3246,6 +3357,8 @@
 
         let currentBeforeDupMap = {};
         let currentAfterDupMap = {};
+        let currentBeforeCycleIdx = -1;
+        let currentAfterCycleIdx = -1;
         let currentCycleIdx = -1;
         let lastDeletedState = null;
 
@@ -3569,14 +3682,22 @@
         // Cycle through all duplicates sequentially
         function cycleDuplicates(textareaId = 'beforePreview', wrapperId = 'beforeWrapper') {
             const dupMap = (textareaId === 'beforePreview') ? currentBeforeDupMap : currentAfterDupMap;
-            const lines = Object.keys(dupMap).map(Number);
+            const lines = Object.keys(dupMap).map(Number).sort((a, b) => a - b);
             if (!lines || lines.length === 0) {
                 showToast("No duplicate entries found in file.", "info", "No Duplicates");
                 return;
             }
-            currentCycleIdx = (currentCycleIdx + 1) % lines.length;
-            const targetLine = lines[currentCycleIdx];
-            jumpToLine(textareaId, targetLine, wrapperId);
+            if (textareaId === 'beforePreview') {
+                currentBeforeCycleIdx = (currentBeforeCycleIdx + 1) % lines.length;
+                currentCycleIdx = currentBeforeCycleIdx;
+                const targetLine = lines[currentBeforeCycleIdx];
+                jumpToLine(textareaId, targetLine, wrapperId);
+            } else {
+                currentAfterCycleIdx = (currentAfterCycleIdx + 1) % lines.length;
+                currentCycleIdx = currentAfterCycleIdx;
+                const targetLine = lines[currentAfterCycleIdx];
+                jumpToLine(textareaId, targetLine, wrapperId);
+            }
         }
 
         // Row hover tracking & floating buttons (Copy, Delete, & Jump to Duplicate)
@@ -3956,7 +4077,7 @@
                 dupesChip.style.cursor = 'pointer';
                 dupesChip.setAttribute('title', 'Duplicate Accounts — Click to auto-scroll and cycle through duplicates');
                 dupesChip.addEventListener('click', () => {
-                    cycleDuplicates('beforePreview', 'beforeWrapper');
+                    cycleDuplicates('afterPreview', 'afterWrapper');
                 });
             }
         });
